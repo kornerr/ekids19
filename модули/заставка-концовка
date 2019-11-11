@@ -1,0 +1,127 @@
+// // // //
+
+function ПоказатьЗаставку(мир)
+{
+    this.исполнить = function()
+    {
+        var html =
+`
+<div id="заставка-тело">
+    <center>
+        <h1 id="заставка-заголовок">Память</h1>
+        <strong>1.1.0</strong>
+        <p>Пример с событиями и реакциями</p>
+    </center>
+</div>
+`;
+
+        var css =
+`
+#заставка-заголовок
+{
+    font: bold 4em serif;
+}
+#заставка-тело
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    pointer-events: none;
+}
+#заставка
+{
+    opacity: 1;
+    background-color: white;
+    animation: fadeOutЗаставка 1s ease;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeOutЗаставка
+{
+    0%
+    {
+        opacity: 1;
+    }
+    60%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        opacity: 0;
+    }
+}
+`;
+
+        var экран = добавитьЭкран("заставка", html, css);
+        // Удалить экран после показа.
+        экран.addEventListener(
+            "animationend",
+            function()
+            {
+                document.body.removeChild(экран);
+            }
+        );
+    };
+}
+
+// // // //
+
+function ПоказатьКонцовку(мир)
+{
+    this.исполнить = function()
+    {
+        var html =
+`
+<div id="концовка-тело">
+    <center>
+        <h1 id="концовка-заголовок">Память</h1>
+        <strong>1.1.0</strong>
+        <p>Создано с помощью <a href="http://открытыеигры.рус/муром">МУРОМА</a></p>
+        <p>Санкт-Петербург, 2019</p>
+    </center>
+</div>
+`;
+
+        var css =
+`
+#концовка-заголовок
+{
+    font: bold 4em serif;
+}
+#концовка-тело
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    pointer-events: all;
+}
+#концовка
+{
+    opacity: 0;
+    background-color: white;
+    animation: fadeInКонцовка 1s ease;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeInКонцовка
+{
+    0%
+    {
+        opacity: 0;
+    }
+    60%
+    {
+        opacity: 0;
+    }
+    100%
+    {
+        opacity: 1;
+    }
+}
+`;
+
+        добавитьЭкран("концовка", html, css);
+    };
+}
+
